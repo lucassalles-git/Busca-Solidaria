@@ -71,6 +71,18 @@ app.put("/registros/:nome", async (req, res) => {
   );
 });
 
+//rota de remoção
+app.delete("/registros/:nome", async (req, res) => {
+  const { nome } = req.params;
+  const db = await bancoDados();
+
+  await db.run(`DELETE FROM registros WHERE nome = ?`, [nome]);
+
+  res.send(
+    `O desaparecido com o nome ${nome} foi encontrado e removido com sucesso`,
+  );
+});
+
 const PORT = 3000;
 
 app.listen(PORT, () => {
