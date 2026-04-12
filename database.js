@@ -9,7 +9,7 @@ const bancoDados = async () => {
   });
 
   await db.exec(`
-    CREATE TABLE IF NOT EXISTS abrigos(
+    CREATE TABLE IF NOT EXISTS registro(
     
     -- locais
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -20,13 +20,13 @@ const bancoDados = async () => {
     )
         `);
 
-  console.log("Banco de dados configurado: A tabela de abrigos está pronta");
+  console.log("Banco de dados configurado: A tabela de registros está pronta");
 
-  const checagem = await db.get(`SELECT COUNT (*) AS total FROM abrigos`);
+  const checagem = await db.get(`SELECT COUNT (*) AS total FROM registros`);
 
   if (checagem.total === 0) {
     await db.exec(`
-        INSERT INTO abrigos(nome_abrigo, local_abrigo, capacidade_maxima) VALUES (
+        INSERT INTO registros(nome_abrigo, local_abrigo, capacidade_maxima) VALUES (
         "AABB Canoas",
         "Rua Santa Terezinha, 860 - Nossa Sra. das Gracas, Canoas - RS, 92025-620",
         343
@@ -48,11 +48,11 @@ const bancoDados = async () => {
         )
         `);
   } else {
-    console.log(`Banco pronto com ${checagem.total} abrigos`);
+    console.log(`Banco pronto com ${checagem.total} registros`);
   }
 
-  const todosOsAbrigos = await db.all("SELECT * FROM abrigos");
-  console.table(todosOsAbrigos);
+  const todosOsRegistros = await db.all("SELECT * FROM registros");
+  console.table(todosOsRegistros);
 
   return db;
 };
