@@ -9,9 +9,9 @@ app.get("/", (req, res) => {
         <body>
         <h1>SOS Enchentes</h1>
         
-        <h2>Abrigos para pessoas afetadas</h2>
+        <h2>Registros para pessoas desaparecidas</h2>
             
-        <p>Lista de abrigos: /abrigos</p>
+        <p>Lista de pessoas: /registros</p>
         </body>
 
 
@@ -19,12 +19,12 @@ app.get("/", (req, res) => {
 });
 
 //Rota para listar os abrigos
-app.get("/abrigos", async (req, res) => {
+app.get("/registros", async (req, res) => {
   const db = await bancoDados(); //chamando a função do database
 
-  const todosOsAbrigos = await db.all(`SELECT * FROM abrigos`);
+  const todosOsRegistros = await db.all(`SELECT * FROM registros`);
 
-  res.json(todosOsAbrigos);
+  res.json(todosOsRegistros);
 });
 
 
