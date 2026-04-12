@@ -16,8 +16,8 @@ const bancoDados = async () => {
     nome TEXT,
     idade INTEGER,
     situacao TEXT DEFAULT "desaparecido",
-    abrigo TEXT,
-    endereco TEXT
+    abrigo TEXT DEFAULT "nenhum",
+    endereco TEXT DEFAULT "nenhum"
     )
         `);
 
