@@ -39,17 +39,36 @@ app.get("/registros/:nome", async (req, res) => {
   res.json(pessoaEspecifica);
 });
 
-//POST novo registro de desaparecido
+//novo registro de desaparecido
 app.post("/registros", async (req, res) => {
-  const { nome, idade, abrigo, endereco } = req.body;
+  const { nome, idade } = req.body;
+  const db = await bancoDados();
+
+  await db.run(`INSERT INTO registros(nome, idade) VALUES (?, ?)`, [
+    nome,
+    idade,
+  ]);
+
+  res.send(`Cadastro de desaparecido: ${nome}, de ${idade} anos de idade`);
+});
+
+//Rota de atualização
+app.put("/registros/:nome", async (req, res) => {
+  const { nome } = req.params;
+  const { situacao, abrigo, endereco } = req.body;
   const db = await bancoDados();
 
   await db.run(
-    `INSERT INTO registros(nome, idade, abrigo, endereco) VALUES (?, ?, ?, ?)`,
-    [nome, idade, abrigo, endereco],
+    `
+    UPDATE registros
+    SET situacao = ?, abrigo = ?, endereco = ?
+    WHERE nome = ?`,
+    [situacao, abrigo, endereco, nome],
   );
 
-  res.send(`Cadastro de desaparecido: ${nome}, de ${idade} de idade`)
+  res.send(
+    `As informações do desaparecido de nome ${nome} foram atualizadas com sucesso`,
+  );
 });
 
 const PORT = 3000;
