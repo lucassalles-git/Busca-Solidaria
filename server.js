@@ -1,8 +1,10 @@
 const express = require("express");
 const { bancoDados } = require("./database");
+const cors = require("cors") //pacote que gerencia as permissões de acesso
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send(`
@@ -83,7 +85,7 @@ app.delete("/registros/:nome", async (req, res) => {
   );
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
