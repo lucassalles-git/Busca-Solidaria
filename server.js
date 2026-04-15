@@ -43,14 +43,14 @@ app.get("/desaparecidos/:nome", async (req, res) => {
 
 //novo registro de desaparecido
 app.post("/desaparecidos", async (req, res) => {
-  const { nome, idade, descricao, ultimo_local } = req.body;
+  const { nome, idade, descricao, ultima_vezVisto } = req.body;
   const db = await bancoDados();
 
-  await db.run(`INSERT INTO desaparecidos(nome, idade, descricao, ultimo_local) VALUES (?, ?, ?, ?)`, [
+  await db.run(`INSERT INTO desaparecidos(nome, idade, descricao, ultima_vezVisto) VALUES (?, ?, ?, ?)`, [
     nome,
     idade,
     descricao, 
-    ultimo_local
+    ultima_vezVisto
   ]);
 
   res.send(`Cadastro de desaparecido: ${nome}, de ${idade} anos de idade`);
