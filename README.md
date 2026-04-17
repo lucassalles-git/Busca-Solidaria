@@ -1,4 +1,4 @@
-# SOS Enchentes
+# Busca Solidária
 
 Um serviço backend simples para gerenciar registros de pessoas desaparecidas durante enchentes, com armazenamento em SQLite.
 
