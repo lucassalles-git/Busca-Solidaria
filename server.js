@@ -81,7 +81,7 @@ app.put("/desaparecidos/:id", async (req, res) => {
   );
 
   res.send(
-    `As informações do desaparecido de nome ${nome} foram atualizadas com sucesso`,
+    `As informações do desaparecido foram atualizadas com sucesso`,
   );
 });
 
@@ -93,7 +93,7 @@ app.delete("/desaparecidos/:id", async (req, res) => {
   await db.run(`DELETE FROM desaparecidos WHERE id = ?`, [id]);
 
   res.send(
-    `O desaparecido com o nome ${id} foi encontrado e removido com sucesso`,
+    `O desaparecido com o id ${id} foi encontrado e removido com sucesso`,
   );
 });
 
